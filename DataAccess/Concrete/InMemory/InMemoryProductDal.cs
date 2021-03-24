@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,11 @@ namespace DataAccess.Concrete.InMemory
         {
             //Oracle, SwlServer,Postgres, MongoDb gibi veritabanlarından geldiğini düşünüyoruz buranın
             _products = new List<Product> {
-            new Product {CategoryId=1, ProductId=1,  ProductName="IPhone7", UnitInStok=1, UnitPrice=500},
-            new Product {CategoryId=1, ProductId=2,  ProductName="IPhone8", UnitInStok=2, UnitPrice=600},
-            new Product {CategoryId=1, ProductId=3,  ProductName="IPhone10", UnitInStok=2, UnitPrice=700},
-            new Product {CategoryId=1, ProductId=4,  ProductName="IPhone11", UnitInStok=5, UnitPrice=800},
-            new Product {CategoryId=1, ProductId=5,  ProductName="IPhone12", UnitInStok=4, UnitPrice=900}
+            new Product {CategoryId=1, ProductId=1,  ProductName="IPhone7", UnitsInStock=1, UnitPrice=500},
+            new Product {CategoryId=1, ProductId=2,  ProductName="IPhone8", UnitsInStock=2, UnitPrice=600},
+            new Product {CategoryId=1, ProductId=3,  ProductName="IPhone10", UnitsInStock=2, UnitPrice=700},
+            new Product {CategoryId=1, ProductId=4,  ProductName="IPhone11", UnitsInStock=5, UnitPrice=800},
+            new Product {CategoryId=1, ProductId=5,  ProductName="IPhone12", UnitsInStock=4, UnitPrice=900}
             };
         }
         public void Add(Product product)
@@ -55,12 +56,17 @@ namespace DataAccess.Concrete.InMemory
             return _products.Where(p => p.CategoryId == categoryId).ToList();
         }
 
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Product product)
         {
             //Gönderdiğim ürün Id'sine sahip olan listedeki ürünü bul demek 
             Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
             productToUpdate.ProductName = product.ProductName;
-            productToUpdate.UnitInStok = product.UnitInStok;
+            productToUpdate.UnitsInStock = product.UnitsInStock;
             productToUpdate.UnitPrice = product.UnitPrice;
             productToUpdate.CategoryId = product.CategoryId;
 
