@@ -8,7 +8,7 @@ namespace Core.DataAccess
 {
     // generic constraint : generik kısıt
     // class : referans tip olmasını istiyoruz demek 
-    // IEntity : IEntity olabilir "veri tabanı nesnesi" veye onu implemente eden başka bir nesne olabilir 
+    // IEntity : IEntity olabilir "veri tabanı nesnesi" veya onu implemente eden başka bir nesne olabilir 
     // IEntityRepository implemente eden sınıf type olarak IEntity de verebilmekte buda istemediğimiz bir olay ve onuda new() yazarak kırıyoruz Nasıl kırıyoruz IEntity bir inteface'dir ve newlenemez :D  
 
     public interface IEntityRepository<T> where T:class,IEntity,new()
